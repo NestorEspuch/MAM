@@ -1,0 +1,21 @@
+<div class="gacha-container">
+  <h2>Mancos y Mazmorras</h2>
+  <form [formGroup]="gachaForm">
+    <label for="gachaLevel">Panel: </label>
+    <select id="gachaLevel" formControlName="gachaLevel">
+      <option [value]="null">Elige el panel de gacha ...</option>
+      <option *ngFor="let level of eGachaLevel | keyvalue" [value]="level.key">
+        Tipo: {{ level.value }} - {{ getLevelPrice(level.key) }} Oro
+      </option>
+    </select>
+  </form>
+  <button (click)="rollGacha()">Roll!</button>
+  <div *ngIf="gachaResult" class="result">
+    <p>
+      Nivel de gacha: {{ gachaResult.level }} <br> Precio:
+      {{ getLevelPrice(gachaResult.level) }} Oro
+    </p>
+    <p>Objeto: {{ gachaResult.objectNumber }}</p>
+  </div>
+</div>
+
